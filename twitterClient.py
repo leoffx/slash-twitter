@@ -20,13 +20,15 @@ class twitterClient:
     def tweet(self, message, image_url):
         try:
             images = []
-            for url in image_url:
+            for url in image_url[:4]: #Upload up to 4 photos
                 image_data = requests.get(url).content
                 file_object = io.BytesIO(image_data)
                 images.append(self.api.media_upload(file=file_object,
                                                     filename='photo.png').media_id_string)
+                if len(message) > 263: #Check if message lenght is within Twitter character limit
+                    message = f'{message[:260]...}
 
-            self.api.update_status(message, media_ids=images)
+            self.api.update_status(message[:263], media_ids=images)
             return True
         except Exception:
             return False
