@@ -34,7 +34,7 @@ class twitterClient:
             return False
 
     def get_last_tweets_ids(self):
-        ids = self.api.user_timeline(os.getenv("TWITTER_USERNAME"))
+        ids = self.api.user_timeline(os.getenv("TWITTER_USERNAME"), count=40)
 
         titles_list = []
 
