@@ -1,5 +1,6 @@
 import twitterClient
 import redditClient
+import os
 
 twitter_client = twitterClient.twitterClient()
 reddit_client = redditClient.redditClient()
@@ -10,7 +11,7 @@ if __name__ == '__main__':
     for post in post_list:
         post_title = post['title']
         if post_title[:20] not in titles_list:
-            message = f"{post_title}\nreddit.com/{post['id']}"
+            message = f"{post_title}\nreddit.com/{post['id']}\n{os.getenv('REDDIT_SUBREDDIT')}"
             finished = twitter_client.tweet(message, post['url'])
             if finished:
                 print(f"Posted {post['id']}.")
