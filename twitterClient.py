@@ -25,8 +25,8 @@ class twitterClient:
                 file_object = io.BytesIO(image_data)
                 images.append(self.api.media_upload(file=file_object,
                                                     filename='photo.png').media_id_string)
-                if len(message) > 263: #Check if message lenght is within Twitter character limit
-                    message = f'{message[:260]}...'
+                if len(message) > 253: #Check if message lenght is within Twitter character limit
+                    message = f'{message[:240]}...'
 
             self.api.update_status(message, media_ids=images)
             return True
