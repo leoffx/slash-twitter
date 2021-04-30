@@ -21,6 +21,8 @@ class redditClient:
 
         post_list = []
         for post in posts:
+            if post.pinned:
+                continue
             photo_list = []
             post_upvotes = post.ups
             try:
