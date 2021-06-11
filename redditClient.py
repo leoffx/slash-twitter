@@ -21,7 +21,7 @@ class redditClient:
 
         post_list = []
         for post in posts:
-            if post.pinned:
+            if post.pinned or post.stickied:
                 continue
             photo_list = []
             post_upvotes = post.ups
